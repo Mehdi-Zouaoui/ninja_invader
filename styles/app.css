@@ -1,5 +1,5 @@
 html, body {
-    background-color: #222;
+    background-image: url("../styles/juliolapute.png");
     margin: 0;
     display: flex;
     justify-content: center;
@@ -10,7 +10,7 @@ html, body {
 canvas {
     display: block;
     background-color: #000;
-    background-image: radial-gradient(circle at center, #666666, #000000 65%);
+    
     width: 480px;
     height: 540px;
 }
