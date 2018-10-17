@@ -8,6 +8,7 @@ function createPlayer() {
         y: 450,
         speed: 6,
         lives: 3,
+        score : 0,
         sprite: {
             img: spritesheet,
             offsetX: 88,
@@ -48,8 +49,8 @@ function animatePlayer() {
                 img: bulletsprite,
                 width: 50,
                 height: 50,
-                speed: 10,
-                rotation: Math.PI * 2
+                speed: 5,
+                rotation: Math.PI / 2
             };
         }
 
@@ -86,11 +87,13 @@ function renderPlayer() {
     // Dessin du shoot joueur
     if (player.bullet !== null) {
         // context.fillStyle = player.bullet.color;
-        /** context.save();
-         context.translate( player.bullet.x + player.bullet.width/2 , player.bullet.y + player.bullet.height/2);
-        */
+        // context.save();
+         //context.translate( player.bullet.x + player.bullet.width/2 , player.bullet.y + player.bullet.height/2);
+        //context.rotate(player.bullet.rotation);
         context.drawImage(
             player.bullet.img,
+            //-player.bullet.x + player.bullet.width/2,
+            //-player.bullet.y + player.bullet.height/2,
             player.bullet.x,
             player.bullet.y,
             player.bullet.width,

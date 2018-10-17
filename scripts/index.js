@@ -31,6 +31,7 @@ function render() {
     context.clearRect(0 , 0 , canvas.width, canvas.height)
     renderPlayer(); // Dessin du joueur
     renderAliens(); // Dessin de l'alien
+    renderUI();
 }
 
 // Fonction gérant la boucle de jeu

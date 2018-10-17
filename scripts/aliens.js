@@ -1,12 +1,12 @@
 
 
-const aliensMap = ["40", "40", "40", "40", "40", "40", "40", "40", "40", "40", "40",
+const aliensMap = [40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
 
-    "20", "20", "20", "20", "20", "20", "20", "20", "20", "20", "20",
-    "20", "20", "20", "20", "20", "20", "20", "20", "20", "20", "20",
+    20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+    20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
 
-    "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10",
-    "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10",
+    10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
+    10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
 ];
 let aliensTimer = 500;
 let lastAlienMovement = 0; // Instant 't' du dernier déplacement des aliens
@@ -81,11 +81,42 @@ function animateAliens() {
             else {
                 aliens[i].x += 12 * aliens[i].direction;
             }
+           aliens[i].spriteIndex = (aliens[i].spriteIndex === 0) ? 1 : 0 ;
+            /*if(aliens[i].spriteIndex === 0){
+                aliens[i].spriteIndex = 1;
+            } else aliens[i].spriteIndex =0;
+        }*/
+    }
+}
+            // Vérification si un alien se prend un tri de player.bullet
+            if (player.bullet !== null) {
+                for (let i = 0; i < aliens.length; i++) {
+                    if (
+                        player.bullet.x > aliens[i].x &&
+                        player.bullet.x <= aliens[i].x + aliens[i].width &&
+                        player.bullet.y > aliens[i].y &&
+                        player.bullet.y <= aliens[i].y + aliens[i].height) {
+                        // Collision :
+                        // Augmentation du score du joueur
+                        player.score += aliens[i].points;
+                        player.bullet = null;   
+                    
+                        aliensTimer -= 15;
+                        if (aliensTimer < 75) {
+                            aliensTimer = 75;
+                        }
+                        aliens.splice(i, 1);
+                        break;
+                    }
+
+
+                }
+            }
         }// -- fin du mouvement des aliens
 
-    }
+    
 
-}
+
 
 function renderAliens() {
     for (let i = 0; i < aliens.length; i++) {
