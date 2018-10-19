@@ -44,21 +44,24 @@ function animatePlayer() {
     if (Keyboard.SPACE) {
         if (player.bullet === null) {
             player.bullet = {
-                x: player.x + player.sprite.width / 2 - 2,
-                y: player.y,
+                x: player.x + player.sprite.width / 2 - 14,
+                y: player.y - 20,
                 img: bulletsprite,
-                width: 50,
-                height: 50,
-                speed: 5,
+                width: 30,
+                height: 30,
+                speed: 10,
                 rotation: Math.PI / 2
             };
+            //Son 
+            sounds['shuriken'].play();
         }
 
     }
     // Etat d'avancement du shoot du joueur
     if (player.bullet !== null) {
         player.bullet.y -= player.bullet.speed;
-        //player.bullet.x -= player.bullet.rotation;
+        //Splayer.bullet.x -= player.bullet.rotation;
+        player.bullet.rotation += 1;
 
         if (player.bullet.y + player.bullet.height < 0) {
             player.bullet = null;
@@ -87,20 +90,21 @@ function renderPlayer() {
     // Dessin du shoot joueur
     if (player.bullet !== null) {
         // context.fillStyle = player.bullet.color;
-        // context.save();
-         //context.translate( player.bullet.x + player.bullet.width/2 , player.bullet.y + player.bullet.height/2);
-        //context.rotate(player.bullet.rotation);
+         context.save();
+        context.translate( player.bullet.x + player.bullet.width/2 , player.bullet.y + player.bullet.height/2);
+        /* Boucle sur la rotation  ? */
+        context.rotate(player.bullet.rotation);
         context.drawImage(
             player.bullet.img,
-            //-player.bullet.x + player.bullet.width/2,
-            //-player.bullet.y + player.bullet.height/2,
-            player.bullet.x,
-            player.bullet.y,
+            - player.bullet.width/2,
+            - player.bullet.height/2,
+            //player.bullet.x,
+            //player.bullet.y,
             player.bullet.width,
             player.bullet.height,
 
 
         )
-        // context.restore();
+         context.restore();
     }
 }

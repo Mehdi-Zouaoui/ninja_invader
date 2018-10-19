@@ -1,6 +1,6 @@
 function renderUI() {
     context.fillStyle = "#0f0";
-    context.font = "normal 20 px ' Press Start 2P' , cursive";
+    context.font = "normal 10px 'Press Start 2P' , cursive";
     context.textAlign = 'left';
     context.fillText('Score: ' + player.score, 20, 40);
 
